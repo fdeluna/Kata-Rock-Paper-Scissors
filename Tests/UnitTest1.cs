@@ -56,10 +56,19 @@ public class Tests
     private string RpsGame(string player1, string player2)
     {
         string result = "Draw";
+        switch (player1)
+        {
+            case "Paper":
+                if (player2 == "Rock") result = "Player 1 Wins";
+                break;
+            case "Rock":
+                if (player2 == "Scissors") result = "Player 1 Wins";
+                break;
+            case "Scissors":
+                if (player2 == "Paper") result = "Player 1 Wins";
+                break;
+        }
 
-        if (player1 == "Paper" && player2 == "Rock") result = "Player 1 Wins";
-        if (player1 == "Rock" && player2 == "Scissors") result = "Player 1 Wins";
-        if (player1 == "Scissors" && player2 == "Paper") result = "Player 1 Wins";
         return result;
     }
 }
