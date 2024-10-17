@@ -57,24 +57,38 @@ public class Tests
     {
         RpsGame("Rock", "Paper").Should().Be("Player 2 Wins");
     }
-
-
+    
+    [Test]
+    public void Player2WinsWithARock()
+    {
+        RpsGame("Scissors", "Rock").Should().Be("Player 2 Wins");
+    }
+    
     private string RpsGame(string player1, string player2)
     {
-        string result = "Draw";
+        if (player1 == player2) return "Draw";
+
+        if (PlayerWins(player2, player1) == "Player 1 Wins")
+            return "Player 2 Wins";
+        
+        return PlayerWins(player1, player2);
+    }
+
+    private static string PlayerWins(string player1, string player2)
+    {
         switch (player1)
         {
             case "Paper":
-                if (player2 == "Rock") result = "Player 1 Wins";
+                if (player2 == "Rock") return "Player 1 Wins";
                 break;
             case "Rock":
-                if (player2 == "Scissors") result = "Player 1 Wins";
+                if (player2 == "Scissors") return "Player 1 Wins";
                 break;
             case "Scissors":
-                if (player2 == "Paper") result = "Player 1 Wins";
+                if (player2 == "Paper") return "Player 1 Wins";
                 break;
         }
 
-        return result;
+        throw new ArgumentException("Unknown inputs for Rps game");
     }
 }
