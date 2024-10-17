@@ -23,16 +23,35 @@ public class Tests
     }
 
     [Test]
+    public void TwoRocksResultInATie()
+    {
+        RpsGame("Rock", "Rock").Should().Be("Draw");
+    }
+    
+    [Test]
+    public void TwoScissorsResultInATie()
+    {
+        RpsGame("Scissors", "Scissors").Should().Be("Draw");
+    }
+
+    [Test]
     public void Player1ResultInWin()
     {
         RpsGame("Paper", "Rock").Should().Be("Player 1 Wins");
     }
 
+    [Test]
+    public void Player1WinsWithARock()
+    {
+        RpsGame("Rock", "Scissors").Should().Be("Player 1 Wins");
+    }
+    
     private string RpsGame(string player1, string player2)
     {
         string result = "Draw";
 
         if (player1 == "Paper" && player2 == "Rock") result = "Player 1 Wins";
+        if (player1 == "Rock" && player2 == "Scissors") result = "Player 1 Wins";
         return result;
     }
 }
