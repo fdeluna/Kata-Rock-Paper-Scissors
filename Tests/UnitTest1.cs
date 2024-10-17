@@ -52,6 +52,12 @@ public class Tests
         RpsGame("Scissors", "Paper").Should().Be("Player 1 Wins");
     }
 
+    [Test]
+    public void Player2WinsWithAPaper()
+    {
+        RpsGame("Rock", "Paper").Should().Be("Player 2 Wins");
+    }
+
 
     private string RpsGame(string player1, string player2)
     {
