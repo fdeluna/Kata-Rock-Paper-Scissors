@@ -27,7 +27,7 @@ public class Tests
     {
         RpsGame("Rock", "Rock").Should().Be("Draw");
     }
-    
+
     [Test]
     public void TwoScissorsResultInATie()
     {
@@ -35,7 +35,7 @@ public class Tests
     }
 
     [Test]
-    public void Player1ResultInWin()
+    public void Player1WinsWithAPaper()
     {
         RpsGame("Paper", "Rock").Should().Be("Player 1 Wins");
     }
@@ -45,13 +45,21 @@ public class Tests
     {
         RpsGame("Rock", "Scissors").Should().Be("Player 1 Wins");
     }
-    
+
+    [Test]
+    public void Player1WinsWithAScissor()
+    {
+        RpsGame("Scissors", "Paper").Should().Be("Player 1 Wins");
+    }
+
+
     private string RpsGame(string player1, string player2)
     {
         string result = "Draw";
 
         if (player1 == "Paper" && player2 == "Rock") result = "Player 1 Wins";
         if (player1 == "Rock" && player2 == "Scissors") result = "Player 1 Wins";
+        if (player1 == "Scissors" && player2 == "Paper") result = "Player 1 Wins";
         return result;
     }
 }
