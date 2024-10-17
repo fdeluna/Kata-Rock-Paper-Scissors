@@ -11,17 +11,28 @@ namespace Tests;
 // "scissors", "rock" --> "Player 2 won!"
 // "paper", "paper" --> "Draw!"
 
-public class Tests {
-	[SetUp]
-	public void Setup() { }
+public class Tests
+{
+    [SetUp]
+    public void Setup() { }
 
-	[Test]
-	public void TwoPapersResultInATie() {
-		Rps("Paper","Paper").Should().Be("Draw"); 
-	}
+    [Test]
+    public void TwoPapersResultInATie()
+    {
+        RpsGame("Paper", "Paper").Should().Be("Draw");
+    }
 
-	private string Rps(string paper, string s)
-	{
-		return "Draw";
-	}
+    [Test]
+    public void Player1ResultInWin()
+    {
+        RpsGame("Paper", "Rock").Should().Be("Player 1 Wins");
+    }
+
+    private string RpsGame(string player1, string player2)
+    {
+        string result = "Draw";
+
+        if (player1 == "Paper" && player2 == "Rock") result = "Player 1 Wins";
+        return result;
+    }
 }
